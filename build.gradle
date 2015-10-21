@@ -1,0 +1,57 @@
+
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "com.google.protobuf"
+
+group = "com.github.mortimersmith"
+version = "0.0.1"
+
+sourceCompatibility = "1.8"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs += "$buildDir/generated/source/proto/test/java"
+        }
+    }
+}
+
+compileJava {
+    options.compilerArgs << '-Xlint:all' << "-Xlint:-serial"
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://${System.getProperty("user.home")}/.m2/repository")
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.google.protobuf:protobuf-gradle-plugin:0.7.0"
+    }
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.protobuf:protobuf-java:2.5.0'
+    testCompile "junit:junit:4.12"
+}
+

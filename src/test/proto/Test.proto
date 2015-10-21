@@ -1,0 +1,25 @@
+
+option java_package = "com.github.mortimersmith.jsonproto.protos";
+option java_outer_classname = "Test";
+
+message A
+{
+    optional B a = 1;
+    optional bool b = 2;
+    optional int32 c = 3;
+    optional uint32 d = 4;
+    optional sint32 e = 5;
+    optional fixed32 f = 6;
+    optional sfixed32 g = 7;
+    optional int64 h = 8;
+    optional uint64 i = 9;
+    optional sint64 j = 10;
+    optional fixed64 k = 11;
+    optional sfixed64 l = 12;
+    optional string m = 13;
+}
+
+message B
+{
+    optional uint32 a = 1;
+}
